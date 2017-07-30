@@ -1,0 +1,348 @@
+#!/bin/bash
+#set -x
+clear
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo
+echo "What the hell do you want to do ?"
+echo
+echo "1) Get Dumps by domain (this does not mean particular websites)"
+echo "2) Get The latest dump"
+read choice
+############# Start of First Case
+case $choice in #1
+1)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Which Domain's Leaks do you want ? eg : gmail.com/spam4.me"
+	read domain
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Press enter to search leaks for the domain '$domain'"
+	read nothing
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Searching dumps"
+	curl -s -o dump.json "http://psbdmp.com/api/search/domain/"$domain""
+	jq '.[]' dump.json > dump.txt
+	head -n -3 dump.txt > semi.txt
+	tail -n +4 semi.txt > full.json
+jq -r ".id" full.json > id.txt
+		id=$( cat id.txt )
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Latest Paste featuring "$domain" is pastebin.com/"$id" "
+	echo "What do you want to do ?"
+	echo "1) Open the paste in the default browser"
+	echo "2) Save the paste in a txt file"
+	echo "3) Save the txt file and visit the paste"
+	read method
+# Start of a case within a case
+	case $method in #2
+#Option 1 of case in a case
+		1)
+	clear
+	echo Opening the link
+	xdg-open "https://pastebin.com/raw/"$id""
+	;;
+###End of option 1
+		*)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo Wrong Option, The program thinks you are a fool
+	echo "Thats why the program has shut down"
+	;;
+#######################################Option 2 of case in a case
+		2)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Fetching Paste "
+	curl -s -o "$id".txt "pastebin.com/raw/"$id""
+	echo "Paste fetched and saved as "$id".txt"
+	echo "Do you want to rename it ? (y/n)"
+	read yn
+	####################################################Start of a case in a case in a case
+		case $yn in #3
+	##One Option
+			y)
+		clear
+		echo
+		echo "					Dumpster Diver"
+		echo "					Made by N3V0N"
+		echo
+		echo What should be the new name ?	
+		read nname
+		clear
+		echo
+		echo "					Dumpster Diver"
+		echo "					Made by N3V0N"
+		echo
+		mv "$id".txt "$nname".txt
+		echo "Renamed the file to "$nname".txt"
+		exit
+		;;
+	##Another Option
+			n)
+		clear
+		echo
+		echo "					Dumpster Diver"
+		echo "					Made by N3V0N"
+		echo
+		echo "Thank you for using Dumpster Diver"
+		exit
+		;;
+			*)
+		clear
+		echo
+		echo "					Dumpster Diver"
+		echo "					Made by N3V0N"
+		echo
+		echo Wrong Option, The program thinks you are a fool
+		echo "Thats why the program has shut down"
+		;;
+
+		esac #3
+#######################################################End of case in a case
+	exit
+	;;
+###End of Option 2
+##########3
+		3)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Fetching Paste "
+	curl -s -o "$id".txt "pastebin.com/raw/"$id""
+	echo "Paste fetched and saved as "$id".txt"
+	echo "Do you want to rename it ? (y/n)"
+	read yn
+	case $yn in #4
+	####y
+		y)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo What should be the new name ?	
+	read nname
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	mv "$id".txt "$nname".txt
+	echo "Renamed the file to "$nname".txt"
+	xdg-open "https://pastebin.com/raw/"$id""
+	exit
+	;;
+	#########n
+		n)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo "Thank you for using Dumpster Diver"
+	xdg-open "https://pastebin.com/raw/"$id""
+	exit
+	;;
+	*)
+	clear
+	echo
+	echo "					Dumpster Diver"
+	echo "					Made by N3V0N"
+	echo
+	echo Wrong Option, The program thinks you are a fool
+	echo "Thats why the program has shut down"
+	;;
+	esac #4
+#####end of y
+	exit
+	;;
+############end of options
+esac #2
+
+
+
+
+exit
+;;
+
+2)
+	clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Fetching Latest Dump"
+curl -s -o dump.txt "http://psbdmp.com/api/dump/daily"
+jq '.[]' dump.txt > dump2.txt
+jq '.[]' dump2.txt > finaldump.txt
+jq -r '.id' finaldump.txt > final.txt
+id=$( head -n 1 final.txt )
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Latest Dump is pastebin.com/"$id" "
+echo "What do you want to do ?"
+echo "1) Open the paste in the default browser"
+echo "2) Save the paste in a txt file"
+echo "3) Save the txt file and visit the paste"
+read method
+case $method in
+1)
+clear
+echo Opening the link
+xdg-open "https://pastebin.com/raw/"$id""
+	;;
+
+2)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Fetching Latest Paste "
+curl -s -o "$id".txt "pastebin.com/raw/"$id""
+echo "Paste fetched and saved as "$id".txt"
+echo "Do you want to rename it ? (y/n)"
+read yn
+case $yn in
+y)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo What should be the new name ?	
+read nname
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+mv "$id".txt "$nname".txt
+echo "Renamed the file to "$nname".txt"
+exit
+			;;
+n)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Thank you for using Dumpster Diver"
+exit
+			;;
+*)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo Wrong Option, The program thinks you are a fool
+echo "Thats why the program has shut down"
+;;
+esac
+exit
+	;;
+3)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Fetching Paste "
+curl -s -o "$id".txt "pastebin.com/raw/"$id""
+echo "Paste fetched and saved as "$id".txt"
+echo "Do you want to rename it ? (y/n)"
+read yn
+case $yn in
+y)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo What should be the new name ?	
+read nname
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+mv "$id".txt "$nname".txt
+echo "Renamed the file to "$nname".txt"
+xdg-open "https://pastebin.com/raw/"$id""
+exit
+			;;
+n)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo "Thank you for using Dumpster Diver"
+xdg-open "https://pastebin.com/raw/"$id""
+exit
+			;;
+*)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo Wrong Option, The program thinks you are a fool
+echo "Thats why the program has shut down"
+;;
+esac
+exit
+;;
+esac
+
+echo "WTH ? How did you reach here"
+echo "Exited"
+exit
+;;
+*)
+clear
+echo
+echo "					Dumpster Diver"
+echo "					Made by N3V0N"
+echo
+echo Wrong Option, The program thinks you are a fool
+echo "Thats why the program has shut down"
+exit
+;;
+##########################################
+# ----------------
+#| Start of 2nd  |
+#| Option        |
+# ----------------
+###########################################
+
+esac #1
