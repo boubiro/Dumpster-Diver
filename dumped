@@ -1,10 +1,13 @@
 #!/bin/bash
 #set -x
 clear
+header(){
 echo "					Dumpster Diver"
 echo "					Made by N3V0N"
-echo
-echo
+echo ""
+echo ""
+}
+header
 echo "What the hell do you want to do ?"
 echo
 echo "1) Get Dumps by domain (this does not mean particular websites)"
@@ -14,24 +17,15 @@ read choice
 case $choice in #1
 1)
 	clear
-	echo
-	echo "					Dumpster Diver"
-	echo "					Made by N3V0N"
-	echo
+	header
 	echo "Which Domain's Leaks do you want ? eg : gmail.com/spam4.me"
 	read domain
 	clear
-	echo
-	echo "					Dumpster Diver"
-	echo "					Made by N3V0N"
-	echo
+	header
 	echo "Press enter to search leaks for the domain '$domain'"
 	read nothing
 	clear
-	echo
-	echo "					Dumpster Diver"
-	echo "					Made by N3V0N"
-	echo
+	header
 	echo "Searching dumps"
 	curl -s -o dump.json "http://psbdmp.com/api/search/domain/"$domain""
 	jq '.[]' dump.json > dump.txt
@@ -40,10 +34,7 @@ case $choice in #1
 jq -r ".id" full.json > id.txt
 		id=$( cat id.txt )
 	clear
-	echo
-	echo "					Dumpster Diver"
-	echo "					Made by N3V0N"
-	echo
+	header
 	echo "Latest Paste featuring "$domain" is pastebin.com/"$id" "
 	echo "What do you want to do ?"
 	echo "1) Open the paste in the default browser"
