@@ -1,10 +1,9 @@
 # Dumpster Diver
+![Version](https://img.shields.io/github/release/navanchauhan/Dumpster-Diver.svg)
+[![License](https://img.shields.io/github/license/navanchauhan/Dumpster-Diver.svg)]()
+![Issues](https://img.shields.io/github/issues/navanchauhan/Dumpster-Diver.svg)
 
-
-
-This utility searches pastein for the latest dumps
-
-
+This utility searches pastebin for the latest dumps
 
 # Installing it to run from anywhere
 
