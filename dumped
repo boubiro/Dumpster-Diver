@@ -27,7 +27,7 @@ case $choice in #1
 	clear
 	header
 	echo "Searching dumps"
-	curl -s -o dump.json "http://psbdmp.ws/api/search/domain/"$domain""
+	curl -s -o dump.json "https://psbdmp.ws/api/search/domain/"$domain""
 	jq '.[]' dump.json > dump.txt
 	head -n -3 dump.txt > semi.txt
 	tail -n +4 semi.txt > full.json
@@ -188,7 +188,7 @@ echo "					Dumpster Diver"
 echo "					Made by N3V0N"
 echo
 echo "Fetching Latest Dump"
-curl -s -o dump.txt "http://psbdmp.ws/api/dump/daily"
+curl -s -o dump.txt "https://psbdmp.ws/api/dump/daily"
 jq '.[]' dump.txt > dump2.txt
 jq '.[]' dump2.txt > finaldump.txt
 jq -r '.id' finaldump.txt > final.txt
